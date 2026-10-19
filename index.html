@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f5ef">
+  <title>Cook at Home — рецепты с любовью</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Cook at Home — главная">
+      <span class="brand-mark"><i data-lucide="cooking-pot"></i></span>
+      <span>cook<span class="brand-light"> at home</span><small>простые рецепты каждый день</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href="#recipes">Рецепты</a>
+      <a href="#allergy-tools">Аллергены</a>
+      <button class="nav-favorites" id="favoritesNav"><i data-lucide="heart"></i> Избранное <span id="favoritesCount">0</span></button>
+    </nav>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Показать меню"><i data-lucide="menu"></i></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> Вдохновение на вашей кухне</span>
+        <h1>Готовить дома —<br><em>это удовольствие.</em></h1>
+        <p>Вкусные идеи на каждый день, понятные рецепты и забота о ваших пищевых предпочтениях.</p>
+        <a class="primary-button" href="#recipes">Найти свой рецепт <i data-lucide="arrow-up-right"></i></a>
+        <div class="hero-note"><span class="note-icon"><i data-lucide="heart-handshake"></i></span><span><strong>Готовим с заботой</strong><small>Учитывайте аллергены в каждом рецепте</small></span></div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image"></div>
+        <div class="floating-card floating-time"><span class="float-icon"><i data-lucide="clock-3"></i></span><span><strong>30 минут</strong><small>и готово!</small></span></div>
+        <div class="floating-card floating-love"><i data-lucide="heart"></i><span>С любовью к еде</span></div>
+        <div class="hero-sparkle sparkle-one">✳</div><div class="hero-sparkle sparkle-two">✦</div>
+      </div>
+    </section>
+
+    <section class="quick-stats" aria-label="Преимущества">
+      <div><span class="stat-icon peach"><i data-lucide="book-open"></i></span><span><strong>12+</strong><small>идей для меню</small></span></div>
+      <div><span class="stat-icon green"><i data-lucide="leaf"></i></span><span><strong>Понятно</strong><small>шаг за шагом</small></span></div>
+      <div><span class="stat-icon lilac"><i data-lucide="shield-check"></i></span><span><strong>С заботой</strong><small>информация об аллергенах</small></span></div>
+    </section>
+
+    <section class="recipes-section" id="recipes">
+      <div class="section-heading">
+        <div><span class="eyebrow">Что сегодня приготовим?</span><h2>Найди свой <em>вкус</em></h2></div>
+        <p>Немного вдохновения — и на столе уже что-то особенное.</p>
+      </div>
+      <div class="search-row">
+        <label class="search-box"><i data-lucide="search"></i><input id="searchInput" type="search" placeholder="Найти блюдо или ингредиент..." autocomplete="off"><kbd>⌕</kbd></label>
+        <button class="filter-toggle" id="filterToggle"><i data-lucide="sliders-horizontal"></i> Фильтры <span id="activeFilterCount" class="filter-count">0</span></button>
+      </div>
+      <div class="category-row" id="categoryRow" aria-label="Категории">
+        <button class="category-chip active" data-category="Все">Все рецепты</button>
+        <button class="category-chip" data-category="Завтраки"><i data-lucide="sunrise"></i> Завтраки</button>
+        <button class="category-chip" data-category="Обеды"><i data-lucide="soup"></i> Обеды</button>
+        <button class="category-chip" data-category="Ужины"><i data-lucide="utensils"></i> Ужины</button>
+        <button class="category-chip" data-category="Салаты"><i data-lucide="salad"></i> Салаты</button>
+        <button class="category-chip" data-category="Десерты"><i data-lucide="cake-slice"></i> Десерты</button>
+      </div>
+
+      <div class="filter-panel" id="allergy-tools">
+        <div class="filter-panel-top">
+          <div><span class="filter-title-icon"><i data-lucide="shield-alert"></i></span><div><h3>Учитываем аллергены</h3><p>Отметь ингредиенты, которых хочешь избегать.</p></div></div>
+          <button class="clear-filters" id="clearFilters">Сбросить</button>
+        </div>
+        <div class="allergen-options" id="allergenOptions"></div>
+        <label class="avoid-toggle"><input type="checkbox" id="strictAvoid" checked><span class="toggle-ui"></span><span><strong>Скрывать рецепты с выбранными аллергенами</strong><small>Если выключить, рецепты останутся видимыми с предупреждением.</small></span></label>
+        <p class="allergy-disclaimer"><i data-lucide="info"></i> Состав указан для справки. Всегда проверяйте упаковки продуктов и риск перекрёстного контакта.</p>
+      </div>
+
+      <div class="results-line"><span id="resultsCount">12 рецептов</span><button id="resetSearch" class="reset-search">Сбросить поиск</button></div>
+      <div class="recipe-grid" id="recipeGrid"></div>
+      <div class="empty-state hidden" id="emptyState"><span><i data-lucide="search-x"></i></span><h3>Ничего не нашли</h3><p>Попробуй изменить поиск или снять часть фильтров.</p><button class="primary-button" id="emptyReset">Показать все рецепты</button></div>
+    </section>
+
+    <section class="tip-banner">
+      <div class="tip-art"><i data-lucide="sprout"></i><span>✳</span></div>
+      <div><span class="eyebrow">Маленький совет</span><h2>Лучший ингредиент — <em>забота о себе.</em></h2><p>Планируй меню, выбирай свежие продукты и не забывай проверять состав.</p></div>
+      <a href="#allergy-tools" class="tip-link" aria-label="Перейти к фильтрам аллергенов"><i data-lucide="arrow-up-right"></i></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#"><span class="brand-mark"><i data-lucide="cooking-pot"></i></span><span>cook<span class="brand-light"> at home</span><small>простые рецепты каждый день</small></span></a>
+    <p>Вкус дома — в простых моментах ♡</p>
+    <span>© 2026 Cook at Home</span>
+  </footer>
+
+  <div class="modal-backdrop hidden" id="recipeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="recipe-modal">
+      <button class="modal-close" id="modalClose" aria-label="Закрыть"><i data-lucide="x"></i></button>
+      <div class="modal-photo" id="modalPhoto"></div>
+      <div class="modal-content">
+        <span class="modal-category" id="modalCategory"></span>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-meta" id="modalMeta"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-allergens" id="modalAllergens"></div>
+        <div class="modal-columns"><div><h3><i data-lucide="shopping-basket"></i> Ингредиенты</h3><ul id="modalIngredients"></ul></div><div><h3><i data-lucide="list-checks"></i> Приготовление</h3><ol id="modalSteps"></ol></div></div>
+        <p class="modal-warning"><i data-lucide="alert-triangle"></i> Информация об аллергенах ориентировочная. Учитывайте конкретные марки продуктов и возможное перекрёстное загрязнение.</p>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js"></script>
+</body>
+</html>
